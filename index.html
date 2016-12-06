@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twin Peaks Hangman</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script src="assets/javascript/game.js"></script></head>
+<body>
+	<div class="container text-center">
+		<div>
+			<h1 class="block-center">
+				<img id="banner" src="assets/images/tpbanner.jpg" alt="Twin Peaks Hangman">
+			</h1>
+		</div>
+<!-- Here is where the hangman image, word and guessed letters go. -->
+		<div class="row panel default well">
+<!-- This is where the image placeholder will be. -->
+			<div class="col-md-8">
+			<span id="picture" class="img-responsive">
+				<img src="assets/images/twinpeaks.png" alt="Welcome to Twin Peaks">
+			</span>
+			</div>
+<!-- This is where the letters guessed will go. -->
+			<div class="col-md-4">
+				<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Letters Guessed</h3>
+ 					 </div>
+  					<div class="panel-body">
+    					<span class="text-center" id="guesses"></span>
+  					</div>
+				</div>
+
+				<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Guesses Left</h3>
+ 					 </div>
+  					<div class="panel-body">
+    					<p>Guesses Left: <span class="text-center large" id="guesses-left">10</span>
+    					</p>
+  					</div>
+				</div>
+
+				<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Wins and Losses</h3>
+ 					 </div>
+  					<div class="panel-body">
+    					<p>Wins: 
+    						<span class="text-center large" id="wins">0</span>
+    					</p>
+    					<p>Losses: 
+    						<span class="text-center large" id="losses">0</span>
+    					</p>
+  					</div>
+				</div>
+			</div>	
+		</div>
+	<!-- This is where the word and blank spaces will go. -->
+		<div class="row">
+			<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Word To Guess</h3>
+ 					 </div>
+  					<div class="panel-body">
+    					<p> 
+    						<span class="text-center" id="wins">_ _ _ _ _ _</span>
+    					</p>
+  					</div>
+				</div>
+		</div>
+<!-- Here is the end of the hangman stuff. -->
+	</div>
+
+</body>
+</html>
