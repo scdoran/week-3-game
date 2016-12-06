@@ -1,70 +1,77 @@
-var words = ["diane", "cherry", "lodge", "truman", "laura"];
 
-function wordChoice() {
-	return words[Math.floor(Math.random() * words.length)];
-}
+// Word choices.
+var words = ["diane", "coffee", "lodge", "truman", "laura"];
 
-var computerWord = wordChoice();
-
-var guessedLetters = [];
-
-function isInArray(a) {
-    for (var i = 0;i < guessedLetters.length; i++) {
-        if (guessedLetters[i] === a) {
-          return true;
-        }
-    }
-    return false;
-}
-
+// Beginning of the game.
 var game = {
 	wins: 0,
 	losses: 0,
-	counter: 0,
-	space: 0,
 	guessesLeft: 10,
+
+	gameBegin: function() {
+		// Not sure whether or not to put the dash code here or somewhere else (see below in the onkeyup function() code.)
+		function wordChoice() {
+		return words[Math.floor(Math.random() * words.length)];
+		this.computerWord = this.computerWord.toLowerCase();
+		}
+		// Variable for the words chosen will be based off the function above.
+		var computerWord = wordChoice();
+
+		var guessedLetters = [];
+
+		function isInArray(a) {
+    	for (var i = 0;i < guessedLetters.length; i++) {
+        	if (guessedLetters[i] === a) {
+          	return true;
+        	}
+    	}
+    	return false;
+		}
+
+		document.getElementById("hangman-words").innerHTML = this.computerWord;
+		document.getElementById("guesses-left").innerHTML = game.guessesLeft;	
+	}	
+
 }
 
-document.onkeyup = function (event) {
+// All of the stuff below will happen when a key is released!
+	document.onkeyup = function (event) {
 
-	var userGuess = event.key;
+		var userGuess = event.key;
 
-	if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess ===  "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) {
-
+// Still figuring out the conditionals here, so not much has changed from the psychic game.
 		if (userGuess === computerWord) {
 			document.getElementById("guesses").textContent = " ";
-			words[i].guessesLeft = 10;
+			game.guessesLeft = 10;
 			var computerWord = wordChoice();
 			guessedLetters = [];
 		}
 
 		else if (userGuess !== computerWord) {
-			if (isInArray(userGuess)) {
+			if (this.isInArray(userGuess)) {
           		alert("You already guessed that letter!");
        		}
 
        		else{
-				words[i].guessesLeft--;
+				game.guessesLeft--;
 				guessedLetters.push(userGuess);
 				document.getElementById("guesses").textContent += event.key + " ";
 			}
 		}
-		
+	
+	// If the user runs out of guesses the following will happen...
 		if (game.guessesLeft === 0) {
 			game.losses++;
 			document.getElementById("guesses").textContent=" ";
-			console.log("You lost. The word was " + computerWord);
+			console.log("You lost. The word was " + this.computerWord);
+			document.getElementById("picture").src="../images/bob.gif"
+// Audio code that I found.
+			var audio = new Audio('../sound/fwwmpoem.wav');
+			audio.play();
+			// Guesses left are reset, computer chooses a new word, and the guessedLetters array becomes empty again. 
 			game.guessesLeft = 10;
 			var computerWord = wordChoice();
 			guessedLetters = [];
 		}
 	}
 
-	document.getElementById("wins").innerHTML = game.wins;
-	document.getElementById("hangman-words").innerHTML = computerWord;
-	document.getElementById("guesses-left").innerHTML = game.guessesLeft;
-	document.getElementById('reset').onclick = function() {
-    correct.parentNode.removeChild(correct);
-    letters.parentNode.removeChild(letters);
-  }
-}
