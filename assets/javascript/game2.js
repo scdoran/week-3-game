@@ -15,16 +15,16 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 		return words[Math.floor(Math.random() * words.length)];
 	}
 
-
 // Variable for the words chosen will be based off the function above.
 // This will also make the words turn into dashes.
 	var computerWord = wordChoice();
 
 	for (var i = 0; i < computerWord.length; i++) {
-			var dashes = document.createElement("span");
-			dashes.setAttribute("class", computerWord.charAt(i));
-			dashes.textContent= "-";
-			document.getElementById("hangmanWord").appendChild(dashes);
+		var dashes = document.createElement("span");
+		dashes.setAttribute("class", computerWord.charAt(i));
+		dashes.textContent= "_";
+		var dom = document.getElementById("word");
+		dom.appendChild(dashes);
 	}
 
 //This is the empty array that will hold any guessed letters. 
@@ -43,9 +43,6 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 	document.onkeyup = function (event) {
 
 		var userGuess = event.key;
-		userGuess.toLowerCase();
-
-	if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess ===  "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) {
 
 		for (var i = 0; i < guessedLetters.length; i++) {
 			guessedLetters.push(userGuess);
@@ -88,4 +85,6 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 // 			guessedLetters = [];
 // 		}
 // 	}
+
+
 
