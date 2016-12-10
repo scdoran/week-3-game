@@ -32,3 +32,11 @@ p, span {
     font-size: 18px;
     font-family: 'Cambay', sans-serif;
 }
+
+.well {
+   background-color: rgba(245, 245, 245, 0.4);
+}
+
+.panel-transparent .panel-heading .panel-body {
+    background-color: rgba(245, 245, 245, 0.4)
+}
