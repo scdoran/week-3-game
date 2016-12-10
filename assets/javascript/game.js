@@ -14,19 +14,18 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 	function wordChoice() {
 		return words[Math.floor(Math.random() * words.length)];
 	}
-
-	wordChoice ();
 // Variable for the words chosen will be based off the function above.
 // This will also make the words turn into dashes.
 	var computerWord = wordChoice();
+	var wordSplit = computerWord.split("");
+	console.log(wordSplit);
 
 	for (var i = 0; i < computerWord.length; i++) {
 			var dashes = document.createElement("span");
-			dashes.setAttribute("class", computerWord.charAt(i));
+			dashes.setAttribute("id", "letter-number" + i);
 			dashes.textContent = "-";
 			console.log(document.getElementById("hangmanWord").appendChild(dashes));
 	}
-// var x = 
 //This is the empty array that will hold any guessed letters. 
 	var guessedLetters = [];
 
@@ -40,43 +39,36 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
     return false;
 	}
 
-// This is an empty array that will hold all correct letters for the computerWord characters.
-	var correct = [];
-
-	// for (var i = 0; i < guessedLetters.length; i++) {
-	// 		guessedLetters.push(userGuess);
-	// 	}
-
-	// 	for (var i = 0; i < correct.length; i++) {
-	// 		correct.push(userGuess);
-	// 		// document.getElementsByTagName("span").classname = "computerWord.charAt(i)";
-	// 	}
-
 // // All of the stuff below will happen when a key is released!
 	document.onkeyup = function (event) {
 
-		var userGuess = event.key;
+		//This will make the userGuess letters the event key and lower case. 
+		var userGuess = (event.key);
+		
+		// var curElem = document.getElementsByClassName(userGuess);
 
-	if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess ===  "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) {
+		for (var i = 0; i < wordSplit.length; i++) {
+			if (userGuess === wordSplit[i]) {
+				document.getElementById("letter-number" + i).innerHTML = wordSplit[i];
+			}
+			
+		}
 
 		if (userGuess === this.dashes) {
-			correct.push(userGuess);
 			document.getElementById("guesses").textContent = " ";
 			game.guessesLeft = 7;
 			var computerWord = wordChoice();
 			guessedLetters = [];
 		}
+				
+
 		else {
 			game.guessesLeft--;
 			guessedLetters.push(userGuess);
 			document.getElementById("guesses").textContent += event.key + " ";
-		}
-			console.log(guessedLetters);
-			console.log(correct);
-		
+			}
 		// document.getElementById("word").innerHTML = computerWord;
 		// document.getElementById("guesses").textContent += event.key + " ";
-	}
 }
 	
 // 	// If the user runs out of guesses the following will happen...
