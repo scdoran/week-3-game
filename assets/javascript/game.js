@@ -32,7 +32,6 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 			console.log(document.getElementById("hangmanWord").appendChild(dashes));
 	}
 
-
 //This is the empty array that will hold any guessed letters. 
 	var guessedLetters = [];
 
@@ -46,8 +45,11 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
     }
     return false;
 	
+	}
+	
+	// This is the code for the reset button. *This is still in need of finishing.
 
-	document.getElementById("restart").onclick = 
+	// document.getElementById("restart").onclick = 
 
 // document.getElementById("picture").innerHTML= "<img src='assets/images/twinpeaks.png'>";
 // All of the stuff below will happen when a key is released!
@@ -56,8 +58,6 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 		//This will make the userGuess letters the event key and lower case. 
 		var userGuess = event.key.toLowerCase();
 
-		game.counter = wordSplit.length;
-
 		// This loop will run when a user is trying to guess the hangman word. The word chosen was split into strings, so this became an array.
 		// Because the split word turned into an array, we use the "i" to target the index of each letter within the split word array.
 		// When the letter is guessed correctly, the user's guess is written within the split word array. 
@@ -65,6 +65,7 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 			
 			if (userGuess === wordSplit[i]) {
 				document.getElementById("letter-number" + i).innerHTML = wordSplit[i];
+				console.log("That's right!")
 			}	
 		}
 		// If the letters guessed do not match the chosen word...
@@ -73,20 +74,21 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
           			alert("You already guessed that letter!");
        			}
 
-       			else{
+       			else {
 					game.guessesLeft--;
+					console.log("Nope!")
 					guessedLetters.push(userGuess);
 					document.getElementById("guesses").textContent += event.key + " ";
 				}
 			}
 
 
-		if (game.counter === wordSplit) {
+		if (game.counter === wordSplit.length) {
 			alert("You win!");
 
 		// Guesses left are reset, computer chooses a new word, and the guessedLetters array becomes empty again. 
 			game.guessesLeft = 7;
-			wordChoice();
+			computerWord = wordChoice();
 			guessedLetters = [];
 		}
 
@@ -102,8 +104,13 @@ var words = ["diane", "coffee", "lodge", "truman", "laura"];
 			document.getElementById("picture").innerHTML= "<img src='assets/images/bob.gif'>";
 			
 			// Guesses left are reset, computer chooses a new word, and the guessedLetters array becomes empty again. 
+			computerWord = wordChoice();
 			game.guessesLeft = 7;
 			guessedLetters = [];
 			game.losses++;
 		}
+
+		document.getElementById("wins").innerHTML = game.wins;
+		document.getElementById("losses").innerHTML = game.losses;
+		document.getElementById("guesses-left").innerHTML = game.guessesLeft;
 	}
